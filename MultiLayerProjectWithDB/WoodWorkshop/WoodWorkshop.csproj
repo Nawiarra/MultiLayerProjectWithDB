@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{85E98D66-888B-4D54-87B9-4050A9725AF8}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>MultiLayerProjectWithDB</RootNamespace>
-    <AssemblyName>MultiLayerProjectWithDB</AssemblyName>
+    <ProjectGuid>{6BBED123-CE72-497E-AF0D-84178D815601}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>WoodWorkshop</RootNamespace>
+    <AssemblyName>WoodWorkshop</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -32,7 +32,13 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=10.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.10.1.1\lib\net461\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -43,16 +49,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="Controllers\WoodFurnitureController.cs" />
+    <Compile Include="Models\PostModels\CreateWoodFurniturePostModel.cs" />
+    <Compile Include="Models\ViewModels\WoodFurnitureViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WoodWorkshop\WoodWorkshop.csproj">
-      <Project>{6bbed123-ce72-497e-af0d-84178d815601}</Project>
-      <Name>WoodWorkshop</Name>
+    <ProjectReference Include="..\WoodWorkshop.Data\WoodWorkshop.Data.csproj">
+      <Project>{7753b5a4-03f8-40ba-9960-14bcb6f57b70}</Project>
+      <Name>WoodWorkshop.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WoodWorkshop.Domain\WoodWorkshop.Domain.csproj">
+      <Project>{571d00be-77f6-43ff-9742-9786428c0c87}</Project>
+      <Name>WoodWorkshop.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

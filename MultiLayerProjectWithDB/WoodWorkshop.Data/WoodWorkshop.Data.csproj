@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{85E98D66-888B-4D54-87B9-4050A9725AF8}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>MultiLayerProjectWithDB</RootNamespace>
-    <AssemblyName>MultiLayerProjectWithDB</AssemblyName>
+    <ProjectGuid>{7753B5A4-03F8-40BA-9960-14BCB6F57B70}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>WoodWorkshop.Data</RootNamespace>
+    <AssemblyName>WoodWorkshop.Data</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -43,17 +46,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="Models\WoodFurniture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\WoodWorkshopRepository.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\WoodWorkshop\WoodWorkshop.csproj">
-      <Project>{6bbed123-ce72-497e-af0d-84178d815601}</Project>
-      <Name>WoodWorkshop</Name>
-    </ProjectReference>
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
