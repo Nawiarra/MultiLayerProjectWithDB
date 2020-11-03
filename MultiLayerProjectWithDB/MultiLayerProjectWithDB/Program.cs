@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using WoodWorkshop.Controllers;
 using WoodWorkshop.Models.PostModels;
 
-namespace MultiLayerProjectWithDB
+namespace Three_TierProject
 {
     public class Program
     {
@@ -17,7 +17,8 @@ namespace MultiLayerProjectWithDB
             var model = new CreateWoodFurniturePostModel
             {
                 FullName = "Petr Petrov",
-                PhoneNumber = "+380951111111",
+                PhoneNumber = "+380951111155",
+                Date = DateTime.UtcNow.ToString("dd.MM.yyyy"),
                 FurnitureType = "Chair",
                 Color = "Blue",
                 WoodType = "Oak"
@@ -25,10 +26,14 @@ namespace MultiLayerProjectWithDB
 
             controller.CreateWoodFurnitureRequest(model);
 
+            var createWoodFurnitureViewModel = controller.GetItemById(0);
+
+
             var model2 = new CreateWoodFurniturePostModel
             {
                 FullName = "Petr Petrov",
-                PhoneNumber = "+380951111155",
+                PhoneNumber = "+380951111166",
+                Date = DateTime.UtcNow.ToString("dd.MM.yyyy"),
                 FurnitureType = "Chair",
                 Color = "Blue",
                 WoodType = "Oak"
@@ -37,4 +42,5 @@ namespace MultiLayerProjectWithDB
             controller.CreateWoodFurnitureRequest(model2);
         }
     }
+
 }

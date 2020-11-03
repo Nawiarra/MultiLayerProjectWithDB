@@ -13,7 +13,6 @@ namespace WoodWorkshop.Domain
 {
     public class WoodWorkshopService
     {
-        private List <string> NumbersBlackList { get; set; }
         private readonly WoodWorkshopRepository _woodWorkshopRepository;
         private readonly IMapper _mapper;
 
@@ -21,38 +20,39 @@ namespace WoodWorkshop.Domain
         {
             _woodWorkshopRepository = new WoodWorkshopRepository();
 
-            NumbersBlackList = new List<string>();
-            GetBlackList();
 
             var mapperConfig = new MapperConfiguration(cfg =>
             {
-                var map = cfg.CreateMap< WoodFurnitureModel, WoodFurniture>();
+                var map = cfg.CreateMap<WoodFurnitureModel, WoodFurniture>().ReverseMap();
             });
 
             _mapper = new Mapper(mapperConfig);
         }
 
-        private void GetBlackList()
-        {
-            FileStream file = new FileStream("blacklist.txt",  FileMode.OpenOrCreate, FileAccess.Read);
-            StreamReader reader = new StreamReader(file);
-            
-            while(!reader.EndOfStream)
-            {
-                NumbersBlackList.Add(reader.ReadLine());
-            }
-                 
-        }
-
         public void CreateFurnitureRequest(WoodFurnitureModel model)
         {
-            if (NumbersBlackList.Any(phone => phone.Equals(model.PhoneNumber)))
-                throw new System.Exception("This phone number in blacklist");
+
+            var ListOfAllUserRequests = _woodWorkshopRepository.GetItemsWithSameName(model.FullName);
+
+            var ListsOfEqualsUserFurniture = ListOfAllUserRequests.GroupBy(x => x.Date);
+
+            foreach (var list in ListsOfEqualsUserFurniture)
+            {
+                if (list.Count() > 5)
+                    throw new System.Exception("Users can't buy more than 5 item's in the same day ");
+            }
 
             var woodFurniture = _mapper.Map<WoodFurniture>(model);
 
             _woodWorkshopRepository.Create(woodFurniture);
 
+        }
+
+        public WoodFurnitureModel GetItemById(int id)
+        {
+            var woodFurniture = _woodWorkshopRepository.GetItemById(id);
+
+            return _mapper.Map<WoodFurnitureModel>(woodFurniture);
         }
     }
 }

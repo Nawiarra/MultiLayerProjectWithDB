@@ -9,11 +9,12 @@ namespace WoodWorkshop.Models.ViewModels
     public class WoodFurnitureViewModel
     {
 
-            public int Id { get; set; }
-            public string PhoneNumber { get; set; }
-            public string FullName { get; set; }
-            public string FurnitureType { get; set; }
-            public string Color { get; set; }
-            public string WoodType { get; set; }
+        public int Id { get; set; }
+        public string PhoneNumber { get; set; }
+        public string FullName { get; set; }
+        public string Date { get; set; }
+        public string FurnitureType { get; set; }
+        public string Color { get; set; }
+        public string WoodType { get; set; }
     }
 }
