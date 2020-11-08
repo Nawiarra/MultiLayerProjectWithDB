@@ -40,6 +40,8 @@ namespace Three_TierProject
             };
 
             controller.CreateWoodFurnitureRequest(model2);
+
+            var AllItems = controller.GetAll();
         }
     }
 

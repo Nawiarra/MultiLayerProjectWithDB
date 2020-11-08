@@ -85,7 +85,7 @@ namespace WoodWorkshop.Data.Repositories
             return FinedItem;
     
         }
-        public List<WoodFurniture> GetAll()
+        public List <WoodFurniture> GetAll()
         {
             SqlConnection connection = new SqlConnection(_connectionString);
 

@@ -63,5 +63,13 @@ namespace WoodWorkshop.Domain
 
             return _mapper.Map<WoodFurnitureModel>(woodFurniture);
         }
+
+        public List<WoodFurnitureModel> GetAll()
+        {
+            var woodFurnitures = _woodWorkshopRepository.GetAll();
+
+            return _mapper.Map<List<WoodFurnitureModel>>(woodFurnitures);
+        }
+
     }
 }

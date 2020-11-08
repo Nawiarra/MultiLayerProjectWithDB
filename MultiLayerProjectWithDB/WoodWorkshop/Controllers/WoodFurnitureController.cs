@@ -4,6 +4,7 @@ using WoodWorkshop.Domain;
 using AutoMapper;
 using WoodWorkshop.Domain.Models;
 using WoodWorkshop.Models.ViewModels;
+using System.Collections.Generic;
 
 namespace WoodWorkshop.Controllers
 {
@@ -46,6 +47,12 @@ namespace WoodWorkshop.Controllers
             return _mapper.Map<WoodFurnitureViewModel>(woodFurnitureModel);
         }
 
+        public List <WoodFurnitureViewModel> GetAll()
+        {
+            var resultItems = _woodWorkshopService.GetAll() ;
+
+            return _mapper.Map<List<WoodFurnitureViewModel>>(resultItems);
+        }
 
     }
 }
