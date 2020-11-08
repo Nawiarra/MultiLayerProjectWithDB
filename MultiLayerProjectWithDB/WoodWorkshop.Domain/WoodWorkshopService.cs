@@ -8,12 +8,13 @@ using AutoMapper;
 using WoodWorkshop.Data.Models;
 using WoodWorkshop.Data.Repositories;
 using WoodWorkshop.Domain.Models;
+using WoodWorkshop.Data.Interfaces;
 
 namespace WoodWorkshop.Domain
 {
     public class WoodWorkshopService
     {
-        private readonly WoodWorkshopRepository _woodWorkshopRepository;
+        private readonly IWoodWorkshopRepository _woodWorkshopRepository;
         private readonly IMapper _mapper;
 
         public WoodWorkshopService()

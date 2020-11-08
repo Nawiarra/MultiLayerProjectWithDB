@@ -6,11 +6,12 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WoodWorkshop.Data.Interfaces;
 using WoodWorkshop.Data.Models;
 
 namespace WoodWorkshop.Data.Repositories
 {
-    public class WoodWorkshopRepository
+    public class WoodWorkshopRepository : IWoodWorkshopRepository
     {
         private readonly string _connectionString;
 
