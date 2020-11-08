@@ -19,7 +19,7 @@ namespace WoodWorkshop.Controllers
             var mapperConfig = new MapperConfiguration(cfg =>
             {
                 var map = cfg.CreateMap<CreateWoodFurniturePostModel, WoodFurnitureModel>();
-                var map2 = cfg.CreateMap<WoodFurnitureViewModel, WoodFurnitureModel>();
+                var map2 = cfg.CreateMap<WoodFurnitureModel, WoodFurnitureViewModel> ();
             });
 
             _mapper = new Mapper(mapperConfig);

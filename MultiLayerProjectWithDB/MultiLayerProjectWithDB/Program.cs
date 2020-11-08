@@ -17,7 +17,7 @@ namespace Three_TierProject
             var model = new CreateWoodFurniturePostModel
             {
                 FullName = "Petr Petrov",
-                PhoneNumber = "+380951111155",
+                PhoneNumber = "+380951111133",
                 Date = DateTime.UtcNow.ToString("dd.MM.yyyy"),
                 FurnitureType = "Chair",
                 Color = "Blue",

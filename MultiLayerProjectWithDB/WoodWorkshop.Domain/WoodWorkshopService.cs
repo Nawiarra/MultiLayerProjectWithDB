@@ -32,14 +32,23 @@ namespace WoodWorkshop.Domain
         public void CreateFurnitureRequest(WoodFurnitureModel model)
         {
 
-            var ListOfAllUserRequests = _woodWorkshopRepository.GetItemsWithSameName(model.FullName);
+            var ListOfAllUserRequests = _woodWorkshopRepository.GetAll();
 
-            var ListsOfEqualsUserFurniture = ListOfAllUserRequests.GroupBy(x => x.Date);
+            ListOfAllUserRequests = ListOfAllUserRequests.Where(x => x.FullName == model.FullName).ToList();
 
-            foreach (var list in ListsOfEqualsUserFurniture)
+            try
             {
-                if (list.Count() > 5)
-                    throw new System.Exception("Users can't buy more than 5 item's in the same day ");
+                var ListsOfEqualsUserFurniture = ListOfAllUserRequests.GroupBy(x => x.Date);
+
+                foreach (var list in ListsOfEqualsUserFurniture)
+                {
+                    if (list.Count() > 5)
+                        throw new System.Exception("Users can't buy more than 5 item's in the same day ");
+                }
+            }
+            catch(Exception ex)
+            {
+
             }
 
             var woodFurniture = _mapper.Map<WoodFurniture>(model);
