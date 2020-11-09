@@ -20,7 +20,24 @@ namespace WoodWorkshop.Data.Repositories
 
         public WoodFurniture Create(WoodFurniture model)
         {
-            throw new NotImplementedException();
+            SqlConnection connection = new SqlConnection(_connectionString);
+
+            using (connection)
+            {
+                connection.Open();
+
+                var result = connection.Execute("INSERT INTO WoodPiecesOfFurniture (FullName, PhoneNumber, Date, FurnitureType, Color, WoodType)" +
+                    $"OUTPUT (Inserted.Id) " +
+                    $"VALUES(\'{model.FullName}\', \'{model.PhoneNumber}\', \'{model.Date}\', \'{model.FurnitureType}\', \'{model.Color}\', \'{model.WoodType}\')");
+
+
+                var insertedId = Convert.ToInt32(result);
+
+                model.Id = insertedId;
+
+                return model;
+
+            }
         }
 
         public List<WoodFurniture> GetAll()

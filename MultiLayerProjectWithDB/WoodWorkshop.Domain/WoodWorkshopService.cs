@@ -19,7 +19,7 @@ namespace WoodWorkshop.Domain
 
         public WoodWorkshopService()
         {
-            _woodWorkshopRepository = new WoodWorkshopRepository();
+            _woodWorkshopRepository = new WoodWorkshopDapperRepository();
 
 
             var mapperConfig = new MapperConfiguration(cfg =>
