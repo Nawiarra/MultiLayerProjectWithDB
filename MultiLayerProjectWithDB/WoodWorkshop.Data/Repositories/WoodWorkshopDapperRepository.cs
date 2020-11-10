@@ -18,7 +18,7 @@ namespace WoodWorkshop.Data.Repositories
             _connectionString = "Data Source =(LocalDB)\\MSSQLLocalDB;Initial Catalog = MultiLayerExampleDB;Integrated Security=true";
         }
 
-        public WoodFurniture Create(WoodFurniture model)
+        public WoodFurnitureOrder Create(WoodFurnitureOrder model)
         {
             SqlConnection connection = new SqlConnection(_connectionString);
 
@@ -26,7 +26,7 @@ namespace WoodWorkshop.Data.Repositories
             {
                 connection.Open();
 
-                var result = connection.Execute("INSERT INTO WoodPiecesOfFurniture (FullName, PhoneNumber, Date, FurnitureType, Color, WoodType)" +
+                var result = connection.Execute("INSERT INTO WoodPiecesOfFurnitureOrders (FullName, PhoneNumber, Date, FurnitureType, Color, WoodType)" +
                     $"OUTPUT (Inserted.Id) " +
                     $"VALUES(\'{model.FullName}\', \'{model.PhoneNumber}\', \'{model.Date}\', \'{model.FurnitureType}\', \'{model.Color}\', \'{model.WoodType}\')");
 
@@ -40,7 +40,7 @@ namespace WoodWorkshop.Data.Repositories
             }
         }
 
-        public List<WoodFurniture> GetAll()
+        public List<WoodFurnitureOrder> GetAll()
         {
             SqlConnection connection = new SqlConnection(_connectionString);
 
@@ -48,12 +48,12 @@ namespace WoodWorkshop.Data.Repositories
             {
                 connection.Open();
 
-                return connection.Query<WoodFurniture>("SELECT * FROM WoodPiecesOfFurniture").ToList();
+                return connection.Query<WoodFurnitureOrder>("SELECT * FROM WoodPiecesOfFurniture").ToList();
             }
             
         }
 
-        public WoodFurniture GetItemById(int id)
+        public WoodFurnitureOrder GetItemById(int id)
         {
             SqlConnection connection = new SqlConnection(_connectionString);
 
@@ -61,7 +61,7 @@ namespace WoodWorkshop.Data.Repositories
             {
                 connection.Open();
 
-                var ResultList = connection.Query<WoodFurniture>($"SELECT * FROM WoodPiecesOfFurniture WHERE Id = {id}").ToList();
+                var ResultList = connection.Query<WoodFurnitureOrder>($"SELECT * FROM WoodPiecesOfFurnitureOrders WHERE Id = {id}").ToList();
 
                 return ResultList.FirstOrDefault();
             }

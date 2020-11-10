@@ -19,14 +19,14 @@ namespace WoodWorkshop.Controllers
 
             var mapperConfig = new MapperConfiguration(cfg =>
             {
-                var map = cfg.CreateMap<CreateWoodFurniturePostModel, WoodFurnitureModel>();
-                var map2 = cfg.CreateMap<WoodFurnitureModel, WoodFurnitureViewModel> ();
+                var map = cfg.CreateMap<CreateWoodFurnitureOrderPostModel, WoodFurnitureOrderModel>();
+                var map2 = cfg.CreateMap<WoodFurnitureOrderModel, WoodFurnitureOrderViewModel> ();
             });
 
             _mapper = new Mapper(mapperConfig);
         }
 
-        public void CreateWoodFurnitureRequest(CreateWoodFurniturePostModel model)
+        public void CreateWoodFurnitureRequest(CreateWoodFurnitureOrderPostModel model)
         {
             if (string.IsNullOrWhiteSpace(model.FullName))
                 throw new System.Exception("Invalid FullName");
@@ -35,23 +35,23 @@ namespace WoodWorkshop.Controllers
             if (model.FurnitureType.Length == 0)
                 throw new System.Exception("Invalid Furniture Type");
 
-            var woodFurnitureModel = _mapper.Map<WoodFurnitureModel>(model);
+            var woodFurnitureModel = _mapper.Map<WoodFurnitureOrderModel>(model);
 
             _woodWorkshopService.CreateFurnitureRequest(woodFurnitureModel);
         }
 
-        public WoodFurnitureViewModel GetItemById(int id)
+        public WoodFurnitureOrderViewModel GetItemById(int id)
         {
             var woodFurnitureModel = _woodWorkshopService.GetItemById(id);
 
-            return _mapper.Map<WoodFurnitureViewModel>(woodFurnitureModel);
+            return _mapper.Map<WoodFurnitureOrderViewModel>(woodFurnitureModel);
         }
 
-        public List <WoodFurnitureViewModel> GetAll()
+        public List <WoodFurnitureOrderViewModel> GetAll()
         {
             var resultItems = _woodWorkshopService.GetAll() ;
 
-            return _mapper.Map<List<WoodFurnitureViewModel>>(resultItems);
+            return _mapper.Map<List<WoodFurnitureOrderViewModel>>(resultItems);
         }
 
     }

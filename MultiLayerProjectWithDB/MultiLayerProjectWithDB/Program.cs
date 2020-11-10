@@ -14,7 +14,7 @@ namespace Three_TierProject
         {
             var controller = new WoodFurnitureController();
 
-            var model = new CreateWoodFurniturePostModel
+            var model = new CreateWoodFurnitureOrderPostModel
             {
                 FullName = "Petr Petrov",
                 PhoneNumber = "+380951111133",
@@ -29,7 +29,7 @@ namespace Three_TierProject
             var createWoodFurnitureViewModel = controller.GetItemById(0);
 
 
-            var model2 = new CreateWoodFurniturePostModel
+            var model2 = new CreateWoodFurnitureOrderPostModel
             {
                 FullName = "Petr Petrov",
                 PhoneNumber = "+380951111166",

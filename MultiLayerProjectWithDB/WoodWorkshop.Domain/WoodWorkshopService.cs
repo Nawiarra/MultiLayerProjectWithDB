@@ -24,24 +24,24 @@ namespace WoodWorkshop.Domain
 
             var mapperConfig = new MapperConfiguration(cfg =>
             {
-                var map = cfg.CreateMap<WoodFurnitureModel, WoodFurniture>().ReverseMap();
+                var map = cfg.CreateMap<WoodFurnitureOrderModel, WoodFurnitureOrder>().ReverseMap();
             });
 
             _mapper = new Mapper(mapperConfig);
         }
 
-        public void CreateFurnitureRequest(WoodFurnitureModel model)
+        public void CreateFurnitureRequest(WoodFurnitureOrderModel model)
         {
 
-            var ListOfAllUserRequests = _woodWorkshopRepository.GetAll();
+            var ListOfAllItems = _woodWorkshopRepository.GetAll();
 
-            ListOfAllUserRequests = ListOfAllUserRequests.Where(x => x.FullName == model.FullName).ToList();
+            ListOfAllItems = ListOfAllItems.Where(x => x.FullName == model.FullName).ToList();
 
             try
             {
-                var ListsOfEqualsUserFurniture = ListOfAllUserRequests.GroupBy(x => x.Date);
+                var ListsOfEqualsUserFurnitureOrders = ListOfAllItems.GroupBy(x => x.Date);
 
-                foreach (var list in ListsOfEqualsUserFurniture)
+                foreach (var list in ListsOfEqualsUserFurnitureOrders)
                 {
                     if (list.Count() > 5)
                         throw new System.Exception("Users can't buy more than 5 item's in the same day ");
@@ -52,24 +52,24 @@ namespace WoodWorkshop.Domain
 
             }
 
-            var woodFurniture = _mapper.Map<WoodFurniture>(model);
+            var woodFurniture = _mapper.Map<WoodFurnitureOrder>(model);
 
             _woodWorkshopRepository.Create(woodFurniture);
 
         }
 
-        public WoodFurnitureModel GetItemById(int id)
+        public WoodFurnitureOrderModel GetItemById(int id)
         {
             var woodFurniture = _woodWorkshopRepository.GetItemById(id);
 
-            return _mapper.Map<WoodFurnitureModel>(woodFurniture);
+            return _mapper.Map<WoodFurnitureOrderModel>(woodFurniture);
         }
 
-        public List<WoodFurnitureModel> GetAll()
+        public List<WoodFurnitureOrderModel> GetAll()
         {
             var woodFurnitures = _woodWorkshopRepository.GetAll();
 
-            return _mapper.Map<List<WoodFurnitureModel>>(woodFurnitures);
+            return _mapper.Map<List<WoodFurnitureOrderModel>>(woodFurnitures);
         }
 
     }

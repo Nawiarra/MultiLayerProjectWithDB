@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
-namespace WoodWorkshop.Models.PostModels
+namespace WoodWorkshop.Data.Models
 {
-    public class CreateWoodFurniturePostModel
+    public class WoodFurnitureOrder
     {
+        public int Id { get; set; }
         public string PhoneNumber { get; set; }
         public string FullName { get; set; }
         public string Date { get; set; }

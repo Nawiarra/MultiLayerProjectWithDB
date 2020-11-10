@@ -20,7 +20,7 @@ namespace WoodWorkshop.Data.Repositories
             _connectionString = "Data Source =(LocalDB)\\MSSQLLocalDB;Initial Catalog = MultiLayerExampleDB;Integrated Security=true";
         }
 
-        public WoodFurniture Create(WoodFurniture model)
+        public WoodFurnitureOrder Create(WoodFurnitureOrder model)
         {
             SqlConnection connection = new SqlConnection(_connectionString);
 
@@ -46,11 +46,11 @@ namespace WoodWorkshop.Data.Repositories
             }
         }
 
-        public WoodFurniture GetItemById(int id)
+        public WoodFurnitureOrder GetItemById(int id)
         {
             SqlConnection connection = new SqlConnection(_connectionString);
 
-            WoodFurniture FinedItem = new WoodFurniture();
+            WoodFurnitureOrder FinedItem = new WoodFurnitureOrder();
 
             using (connection)
             {
@@ -86,12 +86,12 @@ namespace WoodWorkshop.Data.Repositories
             return FinedItem;
     
         }
-        public List <WoodFurniture> GetAll()
+        public List <WoodFurnitureOrder> GetAll()
         {
             SqlConnection connection = new SqlConnection(_connectionString);
 
-            WoodFurniture FinedItem;
-            List<WoodFurniture> result = new List<WoodFurniture>();
+            WoodFurnitureOrder FinedItem;
+            List<WoodFurnitureOrder> result = new List<WoodFurnitureOrder>();
 
             using (connection)
             {
@@ -108,7 +108,7 @@ namespace WoodWorkshop.Data.Repositories
 
                 while (reader.Read())
                 {
-                    FinedItem = new WoodFurniture();
+                    FinedItem = new WoodFurnitureOrder();
 
                     FinedItem.Id = reader.GetInt32(0);
                     FinedItem.PhoneNumber = reader.GetString(1);

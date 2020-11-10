@@ -49,7 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\WoodFurnitureModel.cs" />
+    <Compile Include="Models\WoodFurnitureOrderModel.cs" />
     <Compile Include="WoodWorkshopService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

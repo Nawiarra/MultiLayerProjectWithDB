@@ -5,11 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace WoodWorkshop.Domain.Models
+namespace WoodWorkshop.Models.PostModels
 {
-    public class WoodFurnitureModel
+    public class CreateWoodFurnitureOrderPostModel
     {
-        public int Id { get; set; }
         public string PhoneNumber { get; set; }
         public string FullName { get; set; }
         public string Date { get; set; }
