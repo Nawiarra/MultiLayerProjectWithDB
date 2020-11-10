@@ -68,5 +68,20 @@ namespace WoodWorkshop.Data.Repositories
 
             
         }
+
+        public List<WoodFurnitureOrder> GetItemsByName(string name)
+        {
+            SqlConnection connection = new SqlConnection(_connectionString);
+
+            using (connection)
+            {
+                connection.Open();
+
+                var ResultList = connection.Query<WoodFurnitureOrder>($"SELECT * FROM WoodPiecesOfFurnitureOrders WHERE FullName = {name}").ToList();
+
+                return ResultList;
+            }
+
+        }
     }
 }

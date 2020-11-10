@@ -35,7 +35,7 @@ namespace WoodWorkshop.Domain
 
             var ListOfAllItems = _woodWorkshopRepository.GetAll();
 
-            ListOfAllItems = ListOfAllItems.Where(x => x.FullName == model.FullName).ToList();
+            ListOfAllItems = _woodWorkshopRepository.GetItemByName(model.FullName);
 
             try
             {

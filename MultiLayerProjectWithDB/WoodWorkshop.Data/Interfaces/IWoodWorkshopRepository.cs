@@ -12,5 +12,6 @@ namespace WoodWorkshop.Data.Interfaces
         WoodFurnitureOrder Create(WoodFurnitureOrder model);
         List<WoodFurnitureOrder> GetAll();
         WoodFurnitureOrder GetItemById(int id);
+        WoodFurnitureOrder GetItemsByName(string name);
     }
 }

@@ -86,6 +86,52 @@ namespace WoodWorkshop.Data.Repositories
             return FinedItem;
     
         }
+
+        public List<WoodFurnitureOrder> GetItemsByName(string name)
+        {
+            SqlConnection connection = new SqlConnection(_connectionString);
+
+            List<WoodFurnitureOrder> result = new List<WoodFurnitureOrder>();
+
+            WoodFurnitureOrder FinedItem;
+
+            using (connection)
+            {
+                connection.Open();
+
+                SqlCommand command = new SqlCommand();
+
+                command.Connection = connection;
+                command.CommandType = CommandType.Text;
+                command.CommandText = "SELECT * " +
+                    "FROM WoodPiecesOfFurniture " +
+                    $"WHERE FullName = {name}";
+
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    FinedItem = new WoodFurnitureOrder();
+
+                    FinedItem.Id = reader.GetInt32(0);
+                    FinedItem.PhoneNumber = reader.GetString(1);
+                    FinedItem.FullName = reader.GetString(2);
+                    FinedItem.Date = reader.GetString(3);
+                    FinedItem.FurnitureType = reader.GetString(4);
+                    FinedItem.Color = reader.GetString(5);
+                    FinedItem.WoodType = reader.GetString(6);
+
+                    result.Add(FinedItem);
+                }
+
+                reader.Close();
+
+            }
+
+            return result;
+
+        }
         public List <WoodFurnitureOrder> GetAll()
         {
             SqlConnection connection = new SqlConnection(_connectionString);
