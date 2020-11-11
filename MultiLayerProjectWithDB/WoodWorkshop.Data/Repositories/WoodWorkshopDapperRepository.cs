@@ -48,7 +48,7 @@ namespace WoodWorkshop.Data.Repositories
             {
                 connection.Open();
 
-                return connection.Query<WoodFurnitureOrder>("SELECT * FROM WoodPiecesOfFurniture").ToList();
+                return connection.Query<WoodFurnitureOrder>("SELECT * FROM WoodPiecesOfFurnitureOrders").ToList();
             }
             
         }

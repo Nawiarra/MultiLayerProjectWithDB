@@ -35,7 +35,7 @@ namespace WoodWorkshop.Domain
 
             var ListOfAllItems = _woodWorkshopRepository.GetAll();
 
-            ListOfAllItems = _woodWorkshopRepository.GetItemByName(model.FullName);
+            ListOfAllItems = _woodWorkshopRepository.GetItemsByName(model.FullName);
 
             try
             {
@@ -47,9 +47,9 @@ namespace WoodWorkshop.Domain
                         throw new System.Exception("Users can't buy more than 5 item's in the same day ");
                 }
             }
-            catch(Exception ex)
+            catch
             {
-
+                throw new System.Exception("Incorrect request. User with this parameters is not exist");
             }
 
             var woodFurniture = _mapper.Map<WoodFurnitureOrder>(model);
