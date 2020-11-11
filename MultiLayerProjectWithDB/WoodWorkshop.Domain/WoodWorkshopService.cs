@@ -33,23 +33,18 @@ namespace WoodWorkshop.Domain
         public void CreateFurnitureRequest(WoodFurnitureOrderModel model)
         {
 
-            var ListOfAllItems = _woodWorkshopRepository.GetAll();
+            var ListOfAllItems = _woodWorkshopRepository.GetItemsByName(model.FullName);
 
-            ListOfAllItems = _woodWorkshopRepository.GetItemsByName(model.FullName);
+            if(ListOfAllItems!=null)
+            { 
 
-            try
-            {
                 var ListsOfEqualsUserFurnitureOrders = ListOfAllItems.GroupBy(x => x.Date);
-
+      
                 foreach (var list in ListsOfEqualsUserFurnitureOrders)
                 {
                     if (list.Count() > 5)
                         throw new System.Exception("Users can't buy more than 5 item's in the same day ");
                 }
-            }
-            catch
-            {
-                throw new System.Exception("Incorrect request. User with this parameters is not exist");
             }
 
             var woodFurniture = _mapper.Map<WoodFurnitureOrder>(model);
